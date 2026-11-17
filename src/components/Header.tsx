@@ -7,9 +7,10 @@ import { site } from "@/lib/site";
 import { Logo } from "@/components/ui/Logo";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 
+// «Басты бет» в меню нет: на главную ведёт логотип.
 const NAV = [
-  { id: "home", color: "#38b6ff" },
   { id: "about", color: "#3fc27c" },
+  { id: "groups", color: "#38b6ff" },
   { id: "food", color: "#ff9a2e" },
   { id: "clubs", color: "#9b7bff" },
   { id: "gallery", color: "#ff6b6b" },
@@ -17,7 +18,7 @@ const NAV = [
   { id: "contacts", color: "#22995a" },
 ] as const;
 
-type NavId = (typeof NAV)[number]["id"];
+type NavId = (typeof NAV)[number]["id"] | "home";
 
 function LangSwitch({ className = "" }: { className?: string }) {
   const { lang, setLang, t } = useLang();
@@ -56,11 +57,11 @@ export function Header() {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
-      const probe = window.scrollY + window.innerHeight * 0.35;
+      const probe = window.innerHeight * 0.35;
       let current: NavId = "home";
       for (const n of NAV) {
         const el = document.getElementById(n.id);
-        if (el && el.offsetTop <= probe) current = n.id;
+        if (el && el.getBoundingClientRect().top <= probe) current = n.id;
       }
       setActive(current);
     };
@@ -106,7 +107,7 @@ export function Header() {
           <nav aria-label="Main" className="hidden lg:block">
             <ul className="flex items-center gap-0.5 rounded-full bg-white/80 p-1.5 shadow-[0_6px_24px_-14px_rgb(31_37_71/0.4)] backdrop-blur">
               {NAV.map((n) => (
-                <li key={n.id} className={n.id === "home" ? "hidden xl:block" : ""}>
+                <li key={n.id}>
                   <a
                     href={`#${n.id}`}
                     aria-current={active === n.id ? "true" : undefined}
@@ -147,7 +148,7 @@ export function Header() {
         <nav aria-label="Mobile" className="mx-auto max-w-md px-4 pb-10 pt-4">
           <ul className="grid grid-cols-2 gap-3">
             {NAV.map((n, i) => (
-              <li key={n.id} className={i === 0 ? "col-span-2" : ""}>
+              <li key={n.id} className={i === NAV.length - 1 && NAV.length % 2 ? "col-span-2" : ""}>
                 <a
                   href={`#${n.id}`}
                   onClick={() => setOpen(false)}

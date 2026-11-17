@@ -154,11 +154,11 @@ export function Contacts() {
   ];
 
   return (
-    <section id="contacts" aria-labelledby="contacts-title" className="relative overflow-hidden bg-paper pb-28 pt-14 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
+    <section id="contacts" aria-labelledby="contacts-title" className="relative overflow-hidden bg-paper pb-28 pt-14 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24 short:lg:pt-14">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Cloud className="absolute -right-10 top-8 hidden w-44 opacity-90 md:block" fill="#e8f6ff" />
         <Heart className="absolute left-[5%] top-20 hidden w-7 animate-float md:block" fill="#ff6b6b" />
-        <Star className="absolute bottom-24 left-[46%] hidden w-6 animate-twinkle lg:block" />
+        <Star className="absolute bottom-8 left-[46%] hidden w-6 animate-twinkle lg:block" />
         <Flower className="absolute bottom-16 right-[4%] hidden w-10 animate-sway lg:block" petal="#38b6ff" />
       </div>
 

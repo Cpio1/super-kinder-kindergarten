@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Невысокие экраны ноутбуков: lg + высота ≤ 820px */
+@custom-variant short (@media (max-height: 820px));
+
 /* Только светлая тема: вариант `dark:` не срабатывает никогда */
 @custom-variant dark (&:where(.never-dark, .never-dark *));
 

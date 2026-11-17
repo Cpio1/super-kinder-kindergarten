@@ -58,42 +58,42 @@ export function Clubs() {
   const { t } = useLang();
 
   return (
-    <section id="clubs" aria-labelledby="clubs-title" className="relative overflow-hidden bg-[#f4efff] pb-16 pt-6 sm:pb-24 sm:pt-10 lg:pb-28">
+    <section id="clubs" aria-labelledby="clubs-title" className="relative overflow-hidden bg-[#f4efff] pb-16 pt-6 sm:pb-24 sm:pt-10 lg:pb-28 short:lg:pb-20">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Cloud className="absolute -left-10 top-16 hidden w-40 opacity-80 md:block" />
         <Cloud className="absolute -right-12 bottom-24 hidden w-48 opacity-70 md:block" />
         <Star className="absolute right-[8%] top-10 w-6 animate-twinkle" fill="#9b7bff" />
         <Sparkle className="absolute left-[7%] top-[46%] hidden w-5 animate-twinkle [animation-delay:-2s] lg:block" fill="#ff6b6b" />
-        <Flower className="absolute bottom-10 left-[44%] hidden w-9 animate-sway lg:block" petal="#ffc93c" center="#ff6b6b" />
+        <Flower className="absolute bottom-10 left-[44%] hidden w-9 animate-sway lg:block short:lg:hidden" petal="#ffc93c" center="#ff6b6b" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading id="clubs-title" eyebrow={t.clubs.eyebrow} title={t.clubs.title} text={t.clubs.text} color="#7552e6" />
 
-        <ul className="mt-10 grid gap-6 sm:mt-14 sm:grid-cols-2 sm:gap-7 xl:grid-cols-4 xl:gap-6">
+        <ul className="mt-8 grid gap-4 sm:mt-14 short:lg:mt-8 sm:grid-cols-2 sm:gap-7 xl:grid-cols-4 xl:gap-6">
           {t.clubs.items.map((item, i) => {
             const c = CARDS[i];
             return (
               <li key={i} className={`reveal ${c.tilt}`} style={{ "--d": `${i * 100}ms` } as React.CSSProperties}>
                 <article
-                  className={`group flex h-full flex-col overflow-hidden bg-white ${c.shape} shadow-[0_24px_50px_-30px_rgb(117_82_230/0.55)] transition-transform duration-300 hover:-translate-y-1.5`}
+                  className={`group flex h-full flex-row overflow-hidden bg-white sm:flex-col ${c.shape} shadow-[0_24px_50px_-30px_rgb(117_82_230/0.55)] transition-transform duration-300 hover:-translate-y-1.5`}
                 >
-                  <div className={`relative ${c.art} px-6 pb-4 pt-6`}>
+                  <div className={`relative ${c.art} flex w-[36%] shrink-0 items-center px-2 py-4 sm:block sm:w-auto sm:px-6 sm:pb-4 sm:pt-6`}>
                     <div aria-hidden className="absolute inset-0" style={c.pattern} />
-                    <span className="absolute left-5 top-4 font-display text-5xl font-black text-white/35" aria-hidden>
+                    <span className="absolute left-2 top-1 font-display text-3xl font-black text-white/35 sm:left-5 sm:top-4 sm:text-5xl" aria-hidden>
                       0{i + 1}
                     </span>
-                    <c.Art className="relative mx-auto mb-3 h-36 w-auto transition-transform duration-500 group-hover:scale-105 sm:h-40" />
-                    <svg aria-hidden viewBox="0 0 300 24" preserveAspectRatio="none" className="absolute inset-x-0 -bottom-px block h-6 w-full">
+                    <c.Art className="relative mx-auto h-auto w-full max-w-[120px] transition-transform duration-500 group-hover:scale-105 sm:mb-3 sm:h-40 sm:w-auto sm:max-w-none short:lg:h-28" />
+                    <svg aria-hidden viewBox="0 0 300 24" preserveAspectRatio="none" className="absolute inset-x-0 -bottom-px hidden h-6 w-full sm:block">
                       <path d="M0 24V12c40-14 80-14 120-2s80 12 120 0 40-10 60-6v20Z" fill="#fff" />
                     </svg>
                   </div>
-                  <div className="flex flex-1 flex-col px-6 pb-7 pt-3">
+                  <div className="flex min-w-0 flex-1 flex-col px-4 py-4 sm:px-6 sm:pb-7 sm:pt-3">
                     <span className={`self-start rounded-full px-3 py-1 font-hand text-lg font-bold ${c.tag}`}>{item.tag}</span>
-                    <h3 className="mt-3 text-[1.35rem] font-extrabold leading-snug" style={{ color: c.accent }}>
+                    <h3 className="mt-2 text-[1.15rem] font-extrabold leading-snug sm:mt-3 sm:text-[1.35rem]" style={{ color: c.accent }}>
                       {item.title}
                     </h3>
-                    <p className="mt-2 leading-relaxed text-ink-soft">{item.text}</p>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-ink-soft sm:mt-2 sm:text-base">{item.text}</p>
                   </div>
                 </article>
               </li>

@@ -10,7 +10,21 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InstagramIcon } from "@/components/ui/BrandIcons";
 import { Balloon, Heart, Rainbow, Star, Sun } from "@/components/decor/Shapes";
 
-const INITIAL = 12;
+/** Сколько фото показывать сразу: на телефоне меньше, чтобы не было бесконечной ленты. */
+const INITIAL_DESKTOP = 12;
+const INITIAL_MOBILE = 6;
+
+function useInitialCount() {
+  const [n, setN] = useState(INITIAL_DESKTOP);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const update = () => setN(mq.matches ? INITIAL_MOBILE : INITIAL_DESKTOP);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return n;
+}
 
 function Lightbox({
   photos,
@@ -141,7 +155,7 @@ function EmptyGallery() {
   ];
   return (
     <div className="mt-10 grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
-      <div aria-hidden className="reveal grid auto-rows-[92px] grid-cols-3 gap-3 sm:auto-rows-[130px] sm:gap-4">
+      <div aria-hidden className="reveal grid auto-rows-[92px] grid-cols-3 gap-3 sm:auto-rows-[130px] sm:gap-4 short:lg:auto-rows-[100px]">
         {tiles.map((tile, i) => (
           <div key={i} className={`${tile.bg} ${tile.shape} ${tile.span} grid place-items-center overflow-hidden`}>
             {tile.el}
@@ -173,6 +187,7 @@ export function Gallery() {
   const [open, setOpen] = useState<number | null>(null);
   const [expanded, setExpanded] = useState(false);
   const photos = galleryPhotos;
+  const INITIAL = useInitialCount();
   const visible = expanded ? photos : photos.slice(0, INITIAL);
   const lastTrigger = useRef<HTMLButtonElement | null>(null);
 
@@ -182,7 +197,7 @@ export function Gallery() {
   }, []);
 
   return (
-    <section id="gallery" aria-labelledby="gallery-title" className="relative bg-paper py-14 sm:py-20 lg:py-24">
+    <section id="gallery" aria-labelledby="gallery-title" className="relative bg-paper py-14 sm:py-20 lg:py-24 short:lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading id="gallery-title" eyebrow={t.gallery.eyebrow} title={t.gallery.title} text={t.gallery.text} color="#e2474f" />
 

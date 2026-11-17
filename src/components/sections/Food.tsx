@@ -63,11 +63,11 @@ export function Food() {
       <Wave fill="#fffdf7" flip variant={1} />
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="dotted-bg absolute inset-0 opacity-50" />
-        <Star className="absolute right-[6%] top-[14%] w-6 animate-twinkle" fill="#ff6b6b" />
+        <Star className="absolute right-[6%] top-[14%] hidden w-6 animate-twinkle lg:block" fill="#ff6b6b" />
         <Sparkle className="absolute bottom-[16%] left-[5%] hidden w-6 animate-twinkle [animation-delay:-1.2s] sm:block" fill="#3fc27c" />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-16">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-16 short:lg:py-8">
         <div className="lg:order-2">
           <SectionHeading id="food-title" eyebrow={t.food.eyebrow} title={t.food.title} color="#e2474f" align="left" />
           <p className="reveal mt-5 leading-relaxed text-ink-soft sm:text-lg">{t.food.text}</p>
@@ -101,7 +101,7 @@ export function Food() {
           </p>
         </div>
 
-        <div className="reveal hidden lg:order-1 lg:block">
+        <div className="reveal hidden lg:order-1 lg:block short:lg:mx-auto short:lg:w-full short:lg:max-w-[380px]">
           <FoodTable label={t.food.bigLabel} />
         </div>
       </div>

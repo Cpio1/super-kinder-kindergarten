@@ -7,7 +7,7 @@ import { InstagramIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { Heart, Wave } from "@/components/decor/Shapes";
 import { Phone } from "lucide-react";
 
-const LINKS = ["about", "food", "clubs", "gallery", "documents", "contacts"] as const;
+const LINKS = ["about", "groups", "food", "clubs", "gallery", "documents", "contacts"] as const;
 
 export function Footer() {
   const { t } = useLang();

@@ -103,8 +103,12 @@ export function Hero() {
           <div className="relative mx-auto w-full max-w-[min(100%,30rem)] px-3 pt-4 sm:px-6 lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:max-w-none lg:px-4">
             <Rainbow className="absolute -top-2 left-1/2 w-[86%] -translate-x-1/2 opacity-90 sm:-top-4" />
             <div className="relative mt-[12%]">
-              <div className="blob-a absolute -inset-2.5 rotate-3 bg-sun sm:-inset-3.5" aria-hidden />
-              <div className="blob-a relative aspect-[1/1] overflow-hidden border-[6px] border-white bg-sky-soft shadow-[0_30px_60px_-30px_rgb(21_128_214/0.55)] sm:aspect-[5/4.4]">
+              <div className={`${heroPhoto ? "rounded-[48px_48px_48px_20px]" : "blob-a"} absolute -inset-2.5 rotate-3 bg-sun sm:-inset-3.5`} aria-hidden />
+              {/* С реальным фото контейнер повторяет пропорции снимка — ничего не обрезается */}
+              <div
+                className={`${heroPhoto ? "rounded-[44px_44px_44px_16px]" : "blob-a aspect-[1/1] sm:aspect-[5/4.4]"} relative overflow-hidden border-[6px] border-white bg-sky-soft shadow-[0_30px_60px_-30px_rgb(21_128_214/0.55)]`}
+                style={heroPhoto ? { aspectRatio: `${heroPhoto.width} / ${heroPhoto.height}` } : undefined}
+              >
                 {heroPhoto ? (
                   <Image
                     src={heroPhoto.src}

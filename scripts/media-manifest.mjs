@@ -4,8 +4,9 @@
 //
 // Главное фото первого экрана: файл main-page.* (в public/, public/hero или public/gallery)
 // либо первый файл из public/hero. В галерею оно не попадает.
-// Видео main-page2.(mp4|webm|mov) подключается в галерею первым элементом,
-// постер — main-page2-poster.(jpg|png|webp), если он есть.
+// Раздел «Біз туралы»: main-page2.(jpg|png|webp|avif) или видео main-page2.(mp4|webm|mov),
+// постер видео — main-page2-poster.(jpg|png|webp). Логотип — public/logo.png.
+// Эти файлы в галерею не попадают.
 import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -87,18 +88,29 @@ async function list(dir) {
 const galleryAll = await list("gallery");
 const heroDir = await list("hero");
 const rootDir = (await list("")).map((f) => ({ ...f, src: `/${f.name}` }));
+const everywhere = [...rootDir, ...heroDir, ...galleryAll];
 
 const heroItem =
   heroDir.find((f) => HERO_NAME.test(f.name)) ??
   rootDir.find((f) => HERO_NAME.test(f.name)) ??
   galleryAll.find((f) => HERO_NAME.test(f.name)) ??
-  heroDir[0] ??
+  heroDir.find((f) => !/^main-page2|^logo/i.test(f.name)) ??
   null;
-const POSTER = /^main-page2-poster\./i;
-const poster = [...rootDir, ...heroDir, ...galleryAll].find((f) => POSTER.test(f.name)) ?? null;
-const gallery = galleryAll.filter((f) => f !== heroItem && f !== poster);
 
-// Видео main-page2.*
+// Фото раздела «Біз туралы»: main-page2.(jpg|png|webp|avif)
+const ABOUT_NAME = /^main-page2\.[a-z]+$/i;
+const aboutItem = everywhere.find((f) => ABOUT_NAME.test(f.name)) ?? null;
+
+// Логотип: logo.png (или logo.webp / logo.svg) в public/ — используется вместо нарисованного
+const LOGO_NAME = /^logo\.(png|webp)$/i;
+const logoItem = rootDir.find((f) => LOGO_NAME.test(f.name)) ?? null;
+
+const POSTER = /^main-page2-poster\./i;
+const poster = everywhere.find((f) => POSTER.test(f.name)) ?? null;
+const reserved = new Set([heroItem, aboutItem, poster, logoItem].filter(Boolean));
+const gallery = galleryAll.filter((f) => !reserved.has(f));
+
+// Видео main-page2.* — для раздела «Біз туралы»
 const VIDEO = /^main-page2\.(mp4|webm|mov)$/i;
 let video = null;
 for (const dir of ["", "hero", "gallery"]) {
@@ -117,7 +129,17 @@ const strip = ({ name, ...rest }) => ({ name, ...rest });
 await mkdir(path.join(root, "src", "generated"), { recursive: true });
 await writeFile(
   path.join(root, "src", "generated", "media.json"),
-  JSON.stringify({ hero: heroItem ? strip(heroItem) : null, video, gallery: gallery.map(strip) }, null, 2) + "\n",
+  JSON.stringify(
+    {
+      hero: heroItem ? strip(heroItem) : null,
+      about: aboutItem ? strip(aboutItem) : null,
+      video,
+      logo: logoItem ? strip(logoItem) : null,
+      gallery: gallery.map(strip),
+    },
+    null,
+    2,
+  ) + "\n",
 );
 
-console.log(`[media] hero: ${heroItem?.src ?? "—"}, video: ${video?.src ?? "—"}, gallery: ${gallery.length} фото`);
+console.log(`[media] hero: ${heroItem?.src ?? "—"}, about: ${aboutItem?.src ?? "—"}, logo: ${logoItem?.src ?? "—"}, video: ${video?.src ?? "—"}, gallery: ${gallery.length} фото`);

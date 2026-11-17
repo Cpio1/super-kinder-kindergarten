@@ -20,7 +20,7 @@ export function SectionHeading({ eyebrow, title, text, color = "#38b6ff", align 
         <span className="size-2 rounded-full" style={{ background: color }} aria-hidden />
         {eyebrow}
       </span>
-      <h2 id={id} className="mt-4 text-[1.75rem] font-extrabold leading-[1.15] text-ink sm:text-4xl lg:text-[2.75rem]">
+      <h2 id={id} className="mt-4 text-[1.75rem] font-extrabold leading-[1.15] text-ink sm:text-4xl lg:text-[2.75rem] short:lg:mt-3 short:lg:text-[2.3rem]">
         {title}
       </h2>
       <Squiggle className={`mt-3 h-3 w-24 ${center ? "mx-auto" : ""}`} stroke={color} />
