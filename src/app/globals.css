@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+/* Только светлая тема: вариант `dark:` не срабатывает никогда */
+@custom-variant dark (&:where(.never-dark, .never-dark *));
+
+@theme {
+  --font-sans: var(--font-nunito), "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-rubik), var(--font-nunito), system-ui, sans-serif;
+  --font-hand: var(--font-caveat), var(--font-nunito), cursive;
+
+  --color-ink: #1f2547;
+  --color-ink-soft: #545a7c;
+  --color-paper: #fffdf7;
+  --color-cream: #fff7e8;
+
+  --color-sky: #38b6ff;
+  --color-sky-deep: #1580d6;
+  --color-sky-soft: #dff3ff;
+  --color-sky-pale: #f0f9ff;
+
+  --color-sun: #ffc93c;
+  --color-sun-deep: #f29d00;
+  --color-sun-soft: #fff3c7;
+
+  --color-coral: #ff6b6b;
+  --color-coral-deep: #e2474f;
+  --color-coral-soft: #ffe4e1;
+
+  --color-leaf: #3fc27c;
+  --color-leaf-deep: #22995a;
+  --color-leaf-soft: #ddf7e8;
+
+  --color-lav: #9b7bff;
+  --color-lav-deep: #7552e6;
+  --color-lav-soft: #eee8ff;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-drift: drift 28s linear infinite;
+  --animate-spin-slow: spin 40s linear infinite;
+  --animate-twinkle: twinkle 3.2s ease-in-out infinite;
+  --animate-sway: sway 5s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes drift {
+    0% { transform: translateX(-8%); }
+    50% { transform: translateX(8%); }
+    100% { transform: translateX(-8%); }
+  }
+  @keyframes twinkle {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(0.72) rotate(18deg); opacity: 0.65; }
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-6deg); }
+    50% { transform: rotate(6deg); }
+  }
+}
+
+:root {
+  color-scheme: only light;
+  --header-h: 72px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 84px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top));
+  -webkit-text-size-adjust: 100%;
+  background: var(--color-paper);
+  overflow-x: clip;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  min-width: 320px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Казахские буквы: без принудительного верхнего регистра и с переносами по словам */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  text-transform: none;
+  overflow-wrap: break-word;
+  hyphens: manual;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-sky-deep);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+/* Органические формы */
+.blob-a { border-radius: 58% 42% 46% 54% / 48% 56% 44% 52%; }
+.blob-b { border-radius: 42% 58% 62% 38% / 52% 40% 60% 48%; }
+.blob-c { border-radius: 64% 36% 52% 48% / 40% 58% 42% 60%; }
+
+.dotted-bg {
+  background-image: radial-gradient(rgb(31 37 71 / 0.07) 1.5px, transparent 1.6px);
+  background-size: 22px 22px;
+}
+
+/* Появление при прокрутке — только если работает JS */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
