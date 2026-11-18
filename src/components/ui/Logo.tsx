@@ -22,7 +22,7 @@ export function Logo({ compact = false }: { compact?: boolean }) {
         <span className="relative grid size-10 shrink-0 place-items-center min-[360px]:size-11 lg:size-12" aria-hidden>
           <svg viewBox="0 0 48 48" className="absolute inset-0 size-full">
             {Array.from({ length: 8 }, (_, i) => (
-              <ellipse key={i} cx="24" cy="7" rx="5.5" ry="7" fill={["#ff6b6b", "#ffc93c", "#3fc27c", "#38b6ff"][i % 4]} transform={`rotate(${i * 45} 24 24)`} />
+              <ellipse key={i} cx="24" cy="7" rx="5.5" ry="7" fill={["#9D4EDD", "#FFD93D", "#F5C400", "#7B2CBF"][i % 4]} transform={`rotate(${i * 45} 24 24)`} />
             ))}
             <circle cx="24" cy="24" r="13" fill="#fff" />
           </svg>

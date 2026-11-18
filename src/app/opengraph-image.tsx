@@ -8,7 +8,7 @@ export const contentType = "image/png";
 
 export default async function OpengraphImage() {
   const nunito = await readFile(path.join(process.cwd(), "src/app/_og/Nunito-700.ttf"));
-  const arcs = ["#ff6b6b", "#ffa23c", "#ffc93c", "#3fc27c", "#38b6ff", "#9b7bff"];
+  const arcs = ["#7B2CBF", "#FFD93D", "#9D4EDD", "#FFE680", "#C77DFF", "#FFF4B8"];
 
   return new ImageResponse(
     (
@@ -18,7 +18,7 @@ export default async function OpengraphImage() {
           height: "100%",
           display: "flex",
           alignItems: "center",
-          background: "linear-gradient(180deg, #bfe9ff 0%, #fff7e8 100%)",
+          background: "linear-gradient(180deg, #E9D5FF 0%, #FFFBE6 100%)",
           padding: "0 80px",
           fontFamily: "Nunito",
           position: "relative",
@@ -41,18 +41,18 @@ export default async function OpengraphImage() {
           ))}
         </div>
         <div style={{ display: "flex", flexDirection: "column", width: 720 }}>
-          <div style={{ display: "flex", alignSelf: "flex-start", background: "#fff", borderRadius: 999, padding: "10px 22px", fontSize: 28, color: "#545a7c" }}>
+          <div style={{ display: "flex", alignSelf: "flex-start", background: "#fff", borderRadius: 999, padding: "10px 22px", fontSize: 28, color: "#5E4A7D" }}>
             Алматы · Нұр-Алатау
           </div>
-          <div style={{ display: "flex", fontSize: 96, color: "#1580d6", marginTop: 24 }}>
-            Super&nbsp;<span style={{ color: "#ff6b6b" }}>Kinder</span>
+          <div style={{ display: "flex", fontSize: 96, color: "#5A189A", marginTop: 24 }}>
+            Super&nbsp;<span style={{ color: "#9D4EDD" }}>Kinder</span>
           </div>
-          <div style={{ display: "flex", fontSize: 46, color: "#1f2547", marginTop: 4 }}>бақытты балалық шақ мекені!</div>
+          <div style={{ display: "flex", fontSize: 46, color: "#39205C", marginTop: 4 }}>бақытты балалық шақ мекені!</div>
           <div style={{ display: "flex", gap: 14, marginTop: 34 }}>
             {[
-              ["2–5 жас", "#ffe4e1", "#e2474f"],
-              ["08:00–18:30", "#dff3ff", "#1580d6"],
-              ["5 мезгіл тамақтану", "#ddf7e8", "#22995a"],
+              ["2–5 жас", "#F3E8FF", "#7B2CBF"],
+              ["08:00–18:30", "#E9D5FF", "#5A189A"],
+              ["5 мезгіл тамақтану", "#FFF4B8", "#5A189A"],
             ].map(([label, bg, fg]) => (
               <div key={label} style={{ display: "flex", background: bg, color: fg, borderRadius: 999, padding: "10px 22px", fontSize: 28 }}>
                 {label}

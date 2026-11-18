@@ -8,24 +8,24 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { Sparkle, Star, Wave } from "@/components/decor/Shapes";
 
-const COLORS = ["#38b6ff", "#ff6b6b", "#3fc27c", "#9b7bff", "#ffa23c"];
+const COLORS = ["#7B2CBF", "#9D4EDD", "#5A189A"];
 
 export function Documents() {
   const { t, lang } = useLang();
 
   return (
-    <section id="documents" aria-labelledby="documents-title" className="relative overflow-hidden bg-sky-pale">
-      <Wave fill="#fffdf7" flip variant={2} />
+    <section id="documents" aria-labelledby="documents-title" className="relative overflow-hidden bg-sun-soft">
+      <Wave fill="#FFFFFF" flip variant={2} />
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <Star className="absolute left-[8%] top-[30%] hidden w-6 animate-twinkle md:block" fill="#38b6ff" />
-        <Sparkle className="absolute bottom-[26%] right-[7%] w-5 animate-twinkle [animation-delay:-1.5s]" fill="#ffc93c" />
+        <Star className="absolute left-[8%] top-[30%] hidden w-6 animate-twinkle md:block" fill="#7B2CBF" />
+        <Sparkle className="absolute bottom-[26%] right-[7%] w-5 animate-twinkle [animation-delay:-1.5s]" fill="#FFD93D" />
       </div>
 
-      <div className="relative mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <SectionHeading id="documents-title" eyebrow={t.documents.eyebrow} title={t.documents.title} text={t.documents.text} color="#1580d6" />
+      <div className="relative mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
+        <SectionHeading id="documents-title" eyebrow={t.documents.eyebrow} title={t.documents.title} text={t.documents.text} color="#5A189A" />
 
         {documents.length > 0 ? (
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {documents.map((d, i) => {
               const color = COLORS[i % COLORS.length];
               const Icon = d.kind === "pdf" ? FileText : Link2;
@@ -35,7 +35,7 @@ export function Documents() {
                     href={d.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex h-full items-center gap-4 rounded-[28px] bg-white p-5 shadow-[0_16px_34px_-24px_rgb(21_128_214/0.6)] transition-transform hover:-translate-y-1"
+                    className="group flex h-full items-center gap-4 rounded-[28px] bg-white p-5 shadow-[0_16px_34px_-24px_rgb(123_44_191/0.6)] transition-transform hover:-translate-y-1"
                   >
                     <span className="grid size-14 shrink-0 place-items-center rounded-[18px] text-white" style={{ background: color }}>
                       <Icon className="size-7" aria-hidden />
@@ -53,12 +53,12 @@ export function Documents() {
             })}
           </ul>
         ) : (
-          <div className="reveal relative mx-auto mt-10 max-w-2xl">
+          <div className="reveal relative mx-auto mt-8 max-w-2xl">
             {/* стопка «папок» */}
             <div aria-hidden className="absolute inset-x-8 -top-3 h-10 rotate-[-2deg] rounded-[24px] bg-sun" />
             <div aria-hidden className="absolute inset-x-4 -top-1.5 h-10 rotate-[1.5deg] rounded-[24px] bg-coral" />
-            <div className="relative flex flex-col items-center gap-5 rounded-[32px] bg-white p-6 text-center shadow-[0_24px_50px_-30px_rgb(21_128_214/0.6)] sm:flex-row sm:p-8 sm:text-left">
-              <span className="grid size-20 shrink-0 place-items-center rounded-[26px] bg-sky-soft text-sky-deep">
+            <div className="relative flex flex-col items-center gap-5 rounded-[32px] bg-white p-6 text-center shadow-[0_24px_50px_-30px_rgb(123_44_191/0.6)] sm:flex-row sm:p-8 sm:text-left">
+              <span className="grid size-20 shrink-0 place-items-center rounded-[26px] bg-sun text-ink">
                 <FolderOpen className="size-10" strokeWidth={1.8} aria-hidden />
               </span>
               <div className="min-w-0 flex-1">
@@ -68,7 +68,7 @@ export function Documents() {
                   href={site.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#25d366] px-5 py-2.5 font-extrabold text-white shadow-[0_10px_22px_-12px_rgb(37_211_102/0.9)]"
+                  className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#7B2CBF] px-5 py-2.5 font-extrabold text-white shadow-[0_10px_22px_-12px_rgb(123_44_191/0.9)]"
                 >
                   <WhatsAppIcon className="size-5" />
                   {t.documents.ask}
@@ -78,7 +78,7 @@ export function Documents() {
           </div>
         )}
       </div>
-      <Wave fill="#fffdf7" variant={1} />
+      <Wave fill="#F7F0FF" variant={1} />
     </section>
   );
 }

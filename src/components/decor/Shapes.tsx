@@ -19,16 +19,16 @@ export function Sun({ className, style }: P) {
     <svg {...base} viewBox="0 0 120 120" className={className} style={style}>
       <g className="origin-center animate-spin-slow" style={{ transformBox: "fill-box" }}>
         {Array.from({ length: 12 }, (_, i) => (
-          <rect key={i} x="56" y="2" width="8" height="22" rx="4" fill="#ffb300" transform={`rotate(${i * 30} 60 60)`} />
+          <rect key={i} x="56" y="2" width="8" height="22" rx="4" fill="#F5C400" transform={`rotate(${i * 30} 60 60)`} />
         ))}
       </g>
-      <circle cx="60" cy="60" r="32" fill="#ffc93c" />
+      <circle cx="60" cy="60" r="32" fill="#FFD93D" />
       <circle cx="60" cy="60" r="32" fill="url(#sunShine)" />
-      <circle cx="49" cy="56" r="3.2" fill="#1f2547" />
-      <circle cx="71" cy="56" r="3.2" fill="#1f2547" />
-      <circle cx="44" cy="66" r="5" fill="#ff8f7e" opacity=".6" />
-      <circle cx="76" cy="66" r="5" fill="#ff8f7e" opacity=".6" />
-      <path d="M51 67c5 6 13 6 18 0" stroke="#1f2547" strokeWidth="3" strokeLinecap="round" fill="none" />
+      <circle cx="49" cy="56" r="3.2" fill="#39205C" />
+      <circle cx="71" cy="56" r="3.2" fill="#39205C" />
+      <circle cx="44" cy="66" r="5" fill="#E2B6FF" opacity=".6" />
+      <circle cx="76" cy="66" r="5" fill="#E2B6FF" opacity=".6" />
+      <path d="M51 67c5 6 13 6 18 0" stroke="#39205C" strokeWidth="3" strokeLinecap="round" fill="none" />
       <defs>
         <radialGradient id="sunShine" cx=".35" cy=".3" r=".8">
           <stop offset="0" stopColor="#fff" stopOpacity=".55" />
@@ -39,7 +39,7 @@ export function Sun({ className, style }: P) {
   );
 }
 
-export function Star({ className, style, fill = "#ffc93c" }: P & { fill?: string }) {
+export function Star({ className, style, fill = "#FFD93D" }: P & { fill?: string }) {
   return (
     <svg {...base} viewBox="0 0 40 40" className={className} style={style}>
       <path
@@ -50,7 +50,7 @@ export function Star({ className, style, fill = "#ffc93c" }: P & { fill?: string
   );
 }
 
-export function Sparkle({ className, style, fill = "#9b7bff" }: P & { fill?: string }) {
+export function Sparkle({ className, style, fill = "#9D4EDD" }: P & { fill?: string }) {
   return (
     <svg {...base} viewBox="0 0 40 40" className={className} style={style}>
       <path fill={fill} d="M20 0c1.5 10 5 14.5 20 20-15 5.5-18.5 10-20 20-1.5-10-5-14.5-20-20C15 14.5 18.5 10 20 0Z" />
@@ -58,7 +58,7 @@ export function Sparkle({ className, style, fill = "#9b7bff" }: P & { fill?: str
   );
 }
 
-export function Flower({ className, style, petal = "#ff6b6b", center = "#ffc93c" }: P & { petal?: string; center?: string }) {
+export function Flower({ className, style, petal = "#9D4EDD", center = "#FFD93D" }: P & { petal?: string; center?: string }) {
   return (
     <svg {...base} viewBox="0 0 60 60" className={className} style={style}>
       {Array.from({ length: 6 }, (_, i) => (
@@ -70,10 +70,10 @@ export function Flower({ className, style, petal = "#ff6b6b", center = "#ffc93c"
   );
 }
 
-export function Balloon({ className, style, fill = "#ff6b6b" }: P & { fill?: string }) {
+export function Balloon({ className, style, fill = "#9D4EDD" }: P & { fill?: string }) {
   return (
     <svg {...base} viewBox="0 0 50 110" className={className} style={style}>
-      <path d="M25 62c-2 10 6 16 0 26s4 14 0 22" stroke="#545a7c" strokeWidth="1.6" fill="none" opacity=".55" />
+      <path d="M25 62c-2 10 6 16 0 26s4 14 0 22" stroke="#5E4A7D" strokeWidth="1.6" fill="none" opacity=".55" />
       <ellipse cx="25" cy="30" rx="22" ry="27" fill={fill} />
       <path d="M21 56h8l-4 7z" fill={fill} />
       <ellipse cx="17" cy="20" rx="5" ry="8" fill="#fff" opacity=".45" transform="rotate(20 17 20)" />
@@ -82,7 +82,7 @@ export function Balloon({ className, style, fill = "#ff6b6b" }: P & { fill?: str
 }
 
 export function Rainbow({ className, style }: P) {
-  const arcs = ["#ff6b6b", "#ffa23c", "#ffc93c", "#3fc27c", "#38b6ff", "#9b7bff"];
+  const arcs = ["#7B2CBF", "#FFD93D", "#9D4EDD", "#FFE680", "#C77DFF", "#FFF4B8"];
   return (
     <svg {...base} viewBox="0 0 200 104" className={className} style={style}>
       {arcs.map((c, i) => {
@@ -93,7 +93,7 @@ export function Rainbow({ className, style }: P) {
   );
 }
 
-export function Heart({ className, style, fill = "#ff6b6b" }: P & { fill?: string }) {
+export function Heart({ className, style, fill = "#9D4EDD" }: P & { fill?: string }) {
   return (
     <svg {...base} viewBox="0 0 40 36" className={className} style={style}>
       <path fill={fill} d="M20 35S2 24 2 12C2 6 6.5 2 11.5 2c3.7 0 6.6 2 8.5 5 1.9-3 4.8-5 8.5-5C33.5 2 38 6 38 12c0 12-18 23-18 23Z" />
@@ -101,7 +101,7 @@ export function Heart({ className, style, fill = "#ff6b6b" }: P & { fill?: strin
   );
 }
 
-export function Squiggle({ className, style, stroke = "#ffc93c" }: P & { stroke?: string }) {
+export function Squiggle({ className, style, stroke = "#FFD93D" }: P & { stroke?: string }) {
   return (
     <svg {...base} viewBox="0 0 120 20" className={className} style={style} preserveAspectRatio="none">
       <path d="M2 12c10-10 18-10 28 0s18 10 28 0 18-10 28 0 18 10 28 0" stroke={stroke} strokeWidth="5" fill="none" strokeLinecap="round" />
@@ -122,7 +122,7 @@ export function Wave({ fill, className = "", flip = false, variant = 0 }: { fill
       focusable={false}
       viewBox="0 0 1440 120"
       preserveAspectRatio="none"
-      className={`pointer-events-none block h-10 w-full sm:h-16 lg:h-20 ${flip ? "rotate-180" : ""} ${className}`}
+      className={`pointer-events-none block h-7 w-full sm:h-10 lg:h-12 ${flip ? "rotate-180" : ""} ${className}`}
     >
       <path fill={fill} d={paths[variant]} />
     </svg>

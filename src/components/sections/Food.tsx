@@ -7,12 +7,12 @@ import { Sparkle, Star, Wave } from "@/components/decor/Shapes";
 import { Apple, Banana, Bowl, Broccoli, Carrot, Cup, Pear, Plate, Spoon } from "@/components/decor/Illustrations";
 
 const POINTS = [
-  { Icon: Soup, color: "#ff6b6b" },
-  { Icon: Clock3, color: "#38b6ff" },
-  { Icon: UsersRound, color: "#3fc27c" },
+  { Icon: Soup, color: "#7B2CBF", fg: "#FFFFFF" },
+  { Icon: Clock3, color: "#FFD93D", fg: "#39205C" },
+  { Icon: UsersRound, color: "#9D4EDD", fg: "#FFFFFF" },
 ];
 
-const PLATES = ["#ff6b6b", "#ffa23c", "#ffc93c", "#3fc27c", "#38b6ff"];
+const PLATES = ["#9D4EDD", "#F5C400", "#FFD93D", "#F5C400", "#7B2CBF"];
 
 /** Композиция «стол»: большая тарелка с цифрой 5 и продукты вокруг. */
 function FoodTable({ label }: { label: string }) {
@@ -26,7 +26,7 @@ function FoodTable({ label }: { label: string }) {
   ];
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[440px]">
-      <div className="blob-b absolute inset-[13%] bg-white shadow-[0_30px_60px_-30px_rgb(242_157_0/0.7)]" />
+      <div className="blob-b absolute inset-[13%] bg-white shadow-[0_30px_60px_-30px_rgb(224_168_0/0.7)]" />
       <div className="absolute inset-[20%] grid place-items-center rounded-full border-[10px] border-sun bg-sun-soft">
         <div className="text-center">
           <span className="block font-display text-[clamp(4rem,22vw,7.5rem)] font-black leading-[0.9] text-coral">5</span>
@@ -48,7 +48,7 @@ function FoodTable({ label }: { label: string }) {
       <Spoon className="absolute left-[31%] top-[1%] w-[5%] rotate-[-24deg]" />
       {items.map(({ C, cls }, i) => (
         <div key={i} className={`absolute ${cls}`}>
-          <C className="w-full drop-shadow-[0_8px_10px_rgb(31_37_71/0.12)]" />
+          <C className="w-full drop-shadow-[0_8px_10px_rgb(57_32_92/0.12)]" />
         </div>
       ))}
     </div>
@@ -59,33 +59,33 @@ export function Food() {
   const { t } = useLang();
 
   return (
-    <section id="food" aria-labelledby="food-title" className="relative overflow-hidden bg-[linear-gradient(180deg,#fff3c7_0%,#ffe8b8_100%)]">
-      <Wave fill="#fffdf7" flip variant={1} />
+    <section id="food" aria-labelledby="food-title" className="relative overflow-hidden bg-[linear-gradient(180deg,#FFF4B8_0%,#FFE680_100%)]">
+      <Wave fill="#FFFFFF" flip variant={1} />
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="dotted-bg absolute inset-0 opacity-50" />
-        <Star className="absolute right-[6%] top-[14%] hidden w-6 animate-twinkle lg:block" fill="#ff6b6b" />
-        <Sparkle className="absolute bottom-[16%] left-[5%] hidden w-6 animate-twinkle [animation-delay:-1.2s] sm:block" fill="#3fc27c" />
+        <Star className="absolute right-[6%] top-[14%] hidden w-6 animate-twinkle lg:block" fill="#9D4EDD" />
+        <Sparkle className="absolute bottom-[16%] left-[5%] hidden w-6 animate-twinkle [animation-delay:-1.2s] sm:block" fill="#F5C400" />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-16 short:lg:py-8">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-6 sm:px-6 sm:py-10 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-[clamp(1rem,3.5vh,3rem)]">
         <div className="lg:order-2">
-          <SectionHeading id="food-title" eyebrow={t.food.eyebrow} title={t.food.title} color="#e2474f" align="left" />
-          <p className="reveal mt-5 leading-relaxed text-ink-soft sm:text-lg">{t.food.text}</p>
+          <SectionHeading id="food-title" eyebrow={t.food.eyebrow} title={t.food.title} color="#7B2CBF" align="left" />
+          <p className="reveal mt-4 leading-relaxed text-ink-soft sm:text-lg">{t.food.text}</p>
 
-          <div className="reveal mx-auto my-8 max-w-[340px] sm:max-w-[400px] lg:hidden">
+          <div className="reveal mx-auto my-5 max-w-[230px] sm:max-w-[300px] lg:hidden">
             <FoodTable label={t.food.bigLabel} />
           </div>
 
-          <ul className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+          <ul className="mt-5 grid gap-2.5 sm:grid-cols-3 lg:grid-cols-1">
             {t.food.points.map((p, i) => {
-              const { Icon, color } = POINTS[i];
+              const { Icon, color, fg } = POINTS[i];
               return (
                 <li
                   key={i}
-                  className="reveal flex gap-3 rounded-[26px] bg-white/85 p-4 shadow-[0_10px_24px_-18px_rgb(31_37_71/0.5)] sm:flex-col lg:flex-row lg:items-center"
+                  className="reveal flex gap-3 rounded-[24px] bg-white/85 p-3.5 shadow-[0_10px_24px_-18px_rgb(57_32_92/0.5)] sm:flex-col lg:flex-row lg:items-center"
                   style={{ "--d": `${i * 90}ms` } as React.CSSProperties}
                 >
-                  <span className="grid size-11 shrink-0 place-items-center rounded-2xl text-white" style={{ background: color }}>
+                  <span className="grid size-11 shrink-0 place-items-center rounded-2xl " style={{ background: color, color: fg }}>
                     <Icon className="size-5" strokeWidth={2.5} aria-hidden />
                   </span>
                   <span>
@@ -96,16 +96,16 @@ export function Food() {
               );
             })}
           </ul>
-          <p className="reveal mt-5 rounded-2xl border-2 border-dashed border-sun-deep/40 px-4 py-3 text-[15px] font-semibold text-ink-soft">
+          <p className="reveal mt-4 rounded-2xl border-2 border-dashed border-sun-deep/40 px-4 py-3 text-[15px] font-semibold text-ink-soft">
             {t.food.note}
           </p>
         </div>
 
-        <div className="reveal hidden lg:order-1 lg:block short:lg:mx-auto short:lg:w-full short:lg:max-w-[380px]">
+        <div className="reveal hidden lg:order-1 lg:mx-auto lg:block lg:w-full lg:max-w-[min(440px,56vh)]">
           <FoodTable label={t.food.bigLabel} />
         </div>
       </div>
-      <Wave fill="#f4efff" variant={2} />
+      <Wave fill="#F3E8FF" variant={2} />
     </section>
   );
 }

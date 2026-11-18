@@ -9,13 +9,13 @@ import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 
 // «Басты бет» в меню нет: на главную ведёт логотип.
 const NAV = [
-  { id: "about", color: "#3fc27c" },
-  { id: "groups", color: "#38b6ff" },
-  { id: "food", color: "#ff9a2e" },
-  { id: "clubs", color: "#9b7bff" },
-  { id: "gallery", color: "#ff6b6b" },
-  { id: "documents", color: "#1580d6" },
-  { id: "contacts", color: "#22995a" },
+  { id: "about", color: "#7B2CBF" },
+  { id: "groups", color: "#FFD93D" },
+  { id: "food", color: "#7B2CBF" },
+  { id: "clubs", color: "#FFD93D" },
+  { id: "gallery", color: "#7B2CBF" },
+  { id: "documents", color: "#FFD93D" },
+  { id: "contacts", color: "#7B2CBF" },
 ] as const;
 
 type NavId = (typeof NAV)[number]["id"] | "home";
@@ -96,7 +96,7 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)]">
       <div
         className={`transition-[background-color,box-shadow] duration-300 ${
-          scrolled || open ? "bg-white/90 shadow-[0_8px_30px_-16px_rgb(31_37_71/0.35)] backdrop-blur-md" : "bg-white/0"
+          scrolled || open ? "bg-white/90 shadow-[0_8px_30px_-16px_rgb(57_32_92/0.35)] backdrop-blur-md" : "bg-white/0"
         }`}
       >
         <div className="mx-auto flex h-[var(--header-h)] max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
@@ -105,14 +105,14 @@ export function Header() {
           </a>
 
           <nav aria-label="Main" className="hidden lg:block">
-            <ul className="flex items-center gap-0.5 rounded-full bg-white/80 p-1.5 shadow-[0_6px_24px_-14px_rgb(31_37_71/0.4)] backdrop-blur">
+            <ul className="flex items-center gap-0.5 rounded-full bg-white/80 p-1.5 shadow-[0_6px_24px_-14px_rgb(57_32_92/0.4)] backdrop-blur">
               {NAV.map((n) => (
                 <li key={n.id}>
                   <a
                     href={`#${n.id}`}
                     aria-current={active === n.id ? "true" : undefined}
                     className="relative block whitespace-nowrap rounded-full px-3 py-2 text-[15px] font-bold text-ink-soft transition-colors hover:text-ink xl:px-3.5"
-                    style={active === n.id ? { background: `${n.color}1f`, color: n.color } : undefined}
+                    style={active === n.id ? { background: "#FFD93D", color: "#39205C" } : undefined}
                   >
                     {t.nav[n.id]}
                   </a>
@@ -126,7 +126,7 @@ export function Header() {
             <button
               ref={toggleRef}
               type="button"
-              className="grid size-11 place-items-center rounded-full bg-sun text-ink shadow-[0_6px_16px_-6px_rgb(242_157_0/0.7)] lg:hidden"
+              className="grid size-11 place-items-center rounded-full bg-sun text-ink shadow-[0_6px_16px_-6px_rgb(224_168_0/0.7)] lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
@@ -153,7 +153,7 @@ export function Header() {
                   href={`#${n.id}`}
                   onClick={() => setOpen(false)}
                   className="flex min-h-14 items-center gap-3 rounded-[22px] px-4 py-3 text-[17px] font-extrabold text-ink"
-                  style={{ background: `${n.color}1a` }}
+                  style={{ background: n.color === "#FFD93D" ? "#FFF4B8" : "#F3E8FF" }}
                 >
                   <span className="size-3 shrink-0 rounded-full" style={{ background: n.color }} aria-hidden />
                   {t.nav[n.id]}
@@ -166,7 +166,7 @@ export function Header() {
               href={site.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex min-h-14 items-center justify-center gap-2 rounded-full bg-[#25d366] px-6 font-extrabold text-white"
+              className="flex min-h-14 items-center justify-center gap-2 rounded-full bg-[#7B2CBF] px-6 font-extrabold text-white"
             >
               <WhatsAppIcon className="size-6" />
               {t.contacts.whatsapp}

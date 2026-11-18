@@ -13,8 +13,8 @@ export function Footer() {
   const { t } = useLang();
   const year = new Date().getFullYear();
   return (
-    <footer className="relative bg-[#1f2547] text-white">
-      <Wave fill="#1f2547" variant={0} className="absolute inset-x-0 bottom-full" />
+    <footer className="relative bg-[#39205C] text-white">
+      <Wave fill="#39205C" variant={0} className="absolute inset-x-0 bottom-full" />
       <div className="mx-auto max-w-7xl px-4 pb-28 pt-8 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
           <div>
@@ -51,7 +51,7 @@ export function Footer() {
             © {year} {t.footer.rights}
           </p>
           <p className="flex items-center gap-1.5">
-            {t.footer.madeWith} <Heart className="w-4" fill="#ff6b6b" />
+            {t.footer.madeWith} <Heart className="w-4" fill="#9D4EDD" />
           </p>
         </div>
       </div>
